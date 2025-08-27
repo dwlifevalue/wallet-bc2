@@ -1,3 +1,4 @@
+```bash
 # Redirect HTTP to HTTPS
 server {
     listen 80;
@@ -119,3 +120,4 @@ server {
         try_files $uri $uri/ /index.html;
     }
 }
+```
