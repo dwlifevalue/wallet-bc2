@@ -63,7 +63,7 @@
     "message_placeholder": "Je bericht (max. 50000 tekens)",
     "send_button": "📤 Verzenden",
     "clear_button": "🗑️ Wissen",
-    "recipient_placeholder": "Bech32-adres van de ontvanger (nito1...)",
+    "recipient_placeholder": "Bech32-adres van de ontvanger (bc1...)",
     "validate_button": "✅ Verzending bevestigen",
     "cancel_button": "❌ Annuleren",
     "read_title": "📬 Berichten lezen",
