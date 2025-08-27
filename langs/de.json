@@ -63,7 +63,7 @@
     "message_placeholder": "Ihre Nachricht (max. 50000 Zeichen)",
     "send_button": "📤 Senden",
     "clear_button": "🗑️ Löschen",
-    "recipient_placeholder": "Bech32-Adresse des Empfängers (nito1...)",
+    "recipient_placeholder": "Bech32-Adresse des Empfängers (bc1...)",
     "validate_button": "✅ Senden bestätigen",
     "cancel_button": "❌ Abbrechen",
     "read_title": "📬 Nachrichten lesen",
