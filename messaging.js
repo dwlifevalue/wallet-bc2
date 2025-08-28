@@ -1342,6 +1342,20 @@ function setupMessagingInterface() {
 
   document.getElementById('messageInput')?.addEventListener('input', updateCharCounter);
   updateCharCounter();
+
+  // Re-render message bubbles when language changes
+  if (window.i18next && !window.__bc2_i18n_hooked) {
+    window.__bc2_i18n_hooked = true;
+    i18next.on('languageChanged', () => {
+      try {
+        if (window.__bc2LastMessages) {
+          displayMessages(window.__bc2LastMessages);
+        }
+      } catch (e) {
+        console.warn('i18n re-render failed:', e);
+      }
+    });
+  }
 }
 
 function updateCharCounter() {
@@ -1355,6 +1369,7 @@ function updateCharCounter() {
 }
 
 function displayMessages(messages) {
+  window.__bc2LastMessages = messages;
   const list = document.getElementById('messageList');
   if (!list) return;
 
