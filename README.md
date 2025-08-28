@@ -11,7 +11,7 @@ This guide includes a **fast setup**, a **production Nginx** configuration (HTTP
 * 🔒 Encrypted Messaging — Noble ECDH + **AES-GCM**, stored via **OP\_RETURN**
 * 🌍 Multi-Language — FR, EN, DE, ES, NL, RU, ZH
 * 🔄 UTXO Consolidation — one-click cleanup tool
-* 🧭 HD Support — BIP44 Legacy + BIP49 p2sh + BIP84 Bech32 + BIP86 Taproot; descriptor-based scanning
+* 🧭 HD Support — BIP44 Legacy + BIP49 p2sh + BIP84 Bech32 + BIP86 Taproot
 
 ---
 
