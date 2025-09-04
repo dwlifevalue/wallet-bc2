@@ -752,9 +752,9 @@ function importWIF(wif) {
   try {
     const kp = ECPair.fromWIF(wif, BC2_NETWORK);
     const pubkeyBuffer = Buffer.from(kp.publicKey);
-    const p2pkh = bitcoin.payments.p2pkh({ pubkey: Buffer.from(legacyNode.publicKey), network: BC2_NETWORK  });
+    const p2pkh = bitcoin.payments.p2pkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK });
     const p2wpkh = bitcoin.payments.p2wpkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK });
-    const p2sh = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({ pubkey: Buffer.from(p2shNode.publicKey), network: BC2_NETWORK }), network: BC2_NETWORK });
+    const p2sh = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK }), network: BC2_NETWORK });
     return {
       legacy: p2pkh.address,
       p2sh: p2sh.address,
@@ -778,10 +778,7 @@ function importHex(hex) {
     const pubkeyBuffer = Buffer.from(kp.publicKey);
     const p2pkh = bitcoin.payments.p2pkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK });
     const p2wpkh = bitcoin.payments.p2wpkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK });
-    const p2sh = bitcoin.payments.p2sh({
-  redeem: bitcoin.payments.p2wpkh({ pubkey: Buffer.from(p2shNode.publicKey), network: BC2_NETWORK }),
-  network: BC2_NETWORK 
-});
+    const p2sh = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK }), network: BC2_NETWORK });
     return {
       legacy: p2pkh.address,
       p2sh: p2sh.address,
@@ -994,10 +991,7 @@ function tweakSigner(signer, opts = {}) {
 function getP2SHAddress(pubkeyBuffer) {
   try {
     const p2wpkh = bitcoin.payments.p2wpkh({ pubkey: pubkeyBuffer, network: BC2_NETWORK });
-    const p2sh = bitcoin.payments.p2sh({
-  redeem: bitcoin.payments.p2wpkh({ pubkey: Buffer.from(p2shNode.publicKey), network: BC2_NETWORK }),
-  network: BC2_NETWORK 
-});
+    const p2sh = bitcoin.payments.p2sh({ redeem: p2wpkh, network: BC2_NETWORK });
     return { address: p2sh.address, redeemScript: p2wpkh.output };
   } catch (e) {
     console.error('Error converting to P2SH:', e);
@@ -1721,7 +1715,7 @@ window.addEventListener('load', async () => {
         const pubkey = Buffer.from(bech32Node.publicKey);
         const keyPair = ECPair.fromPrivateKey(bech32Node.privateKey, { network: BC2_NETWORK });
 
-        const p2pkh = bitcoin.payments.p2pkh({ pubkey: pubkey, network: BC2_NETWORK });
+        const p2pkh = bitcoin.payments.p2pkh({ pubkey: Buffer.from(legacyNode.publicKey), network: BC2_NETWORK });
         const p2wpkh = bitcoin.payments.p2wpkh({ pubkey: pubkey, network: BC2_NETWORK });
         const p2sh = bitcoin.payments.p2sh({
   redeem: bitcoin.payments.p2wpkh({ pubkey: Buffer.from(p2shNode.publicKey), network: BC2_NETWORK }),
