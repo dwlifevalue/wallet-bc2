@@ -8,8 +8,7 @@ const MESSAGING_CONFIG = {
   PUBKEY_PREFIX: 'BC2PUB:',
   COMPRESSION_LEVEL: 9,
   MESSAGE_FEE: 0.00000294,
-  MAX_MESSAGE_LENGTH: 50000,
-  PROTECTION_LIMIT: 0.00005
+  MAX_MESSAGE_LENGTH: 50000
 };
 
 let walletData = {
@@ -453,11 +452,13 @@ class BC2Messaging {
   const preparationFeesInSatoshis = Math.round(estimatedTxSize * (feeRate * 1e8) / 1000);
   const preparationFeeRate = preparationFeesInSatoshis / 1e8;
 
-  console.log(`💰 Fees calculés: ${preparationFeesInSatoshis} satoshis (${preparationFeeRate.toFixed(8)} BC2)`);
+  console.log(`💰 Frais préparation split: ${preparationFeesInSatoshis} satoshis (${preparationFeeRate.toFixed(8)} BC2)`);
 
   // Montant par UTXO : 0.0001 (message) + fees dynamiques
+  const baseFee = window.DYNAMIC_FEE_RATE || 0.00001;
   const amountPerUtxo = MESSAGING_CONFIG.MESSAGE_FEE + (preparationFeeRate * 1.2);
-console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
+
+  console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2 (baseFee: ${baseFee.toFixed(8)})`);
   const totalNeeded = chunksNeeded * amountPerUtxo;
 
   const biggestUtxo = availableUtxos[0];
@@ -640,15 +641,21 @@ console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
       console.log(`📦 Message divisé en ${chunks.length} chunks`);
 
       let availableUtxos = await this.getAvailableUtxos(walletData.bech32Address);
-      availableUtxos = availableUtxos.filter(utxo => utxo.amount >= MESSAGING_CONFIG.PROTECTION_LIMIT && utxo.amount < 0.01);
+      availableUtxos = availableUtxos.filter(utxo => utxo.amount >= 0.000003 && utxo.amount < 0.01);
       if (availableUtxos.length < chunks.length) {
         console.log(`⚠️ Préparation de ${chunks.length} UTXOs optimisés...`);
-        await this.prepareUtxosForMessage(chunks.length);
-
-        // Recharger les UTXOs après préparation
-        await this.delay(2000);
-        availableUtxos = await this.getAvailableUtxos(walletData.bech32Address);
-        availableUtxos = availableUtxos.filter(utxo => utxo.amount >= MESSAGING_CONFIG.PROTECTION_LIMIT && utxo.amount < 0.01);
+        const prepTxId = await this.prepareUtxosForMessage(chunks.length);
+        await this.delay(1500);
+        const prepTxDetail = await window.rpc('getrawtransaction', [prepTxId, true]);
+        const estTxVBytes = 250;
+        const feeRate = window.DYNAMIC_FEE_RATE || 0.00001;
+        const estFee = (estTxVBytes * (feeRate * 1e8) / 1000) / 1e8;
+        const minFunding = (MESSAGING_CONFIG.MESSAGE_FEE + estFee) * 1.2;
+        availableUtxos = (prepTxDetail.vout || [])
+          .map((v, idx) => ({ txid: prepTxDetail.txid, vout: idx, amount: v.value, scriptPubKey: v.scriptPubKey?.hex }))
+          .filter(u => u.amount >= minFunding && u.scriptPubKey && (
+            (u.scriptPubKey && true) // keep; script validation is done at spend
+          ));
       }
 
       if (availableUtxos.length === 0) {
@@ -660,7 +667,11 @@ console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
       try {
         // Récupérer TOUS les UTXOs disponibles
         let allAvailableUtxos = await this.getAvailableUtxos(walletData.bech32Address);
-        allAvailableUtxos = allAvailableUtxos.filter(utxo => utxo.amount >= MESSAGING_CONFIG.PROTECTION_LIMIT && utxo.amount < 0.01);
+const estTxVBytes2 = 250; const feeRate2 = window.DYNAMIC_FEE_RATE || 0.00001;
+const estFee2 = (estTxVBytes2 * (feeRate2 * 1e8) / 1000) / 1e8;
+const minFunding2 = (MESSAGING_CONFIG.MESSAGE_FEE + estFee2) * 1.2;
+const tagged2 = await Promise.all(allAvailableUtxos.map(async u => ({ u, inbound: await this.isInboundMessageUtxo(u) })));
+allAvailableUtxos = tagged2.filter(t => !t.inbound && t.u.amount >= minFunding2).map(t => t.u);
         console.log(i18next.t('messaging_debug.available_utxos', { count: allAvailableUtxos.length }));
 
         // Réserver tous les UTXOs qu'on va utiliser
@@ -1010,8 +1021,7 @@ console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
     const scan = await window.rpc("scantxoutset", ["start", [`addr(${address})`]]);
 
     if (scan.unspents) {
-      scan.unspents = scan.unspents.filter(u => u.amount <= MESSAGING_CONFIG.PROTECTION_LIMIT);
-      console.log(`📊 UTXOs protégés: ${scan.unspents.length}`);
+      console.log(`📊 UTXOs (tous montants): ${scan.unspents.length}`);
     }
 
     const transactions = [];
@@ -1252,7 +1262,7 @@ console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
     if (!scan.success || !scan.unspents) return [];
 
     const viableUtxos = scan.unspents
-      .filter(u => u.amount >= MESSAGING_CONFIG.PROTECTION_LIMIT)
+      .filter(u => u.amount >= 0.000003)
       .map(u => ({
         txid: u.txid,
         vout: u.vout,
