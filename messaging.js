@@ -5,7 +5,7 @@ import * as secp256k1 from 'https://esm.sh/@noble/secp256k1@2.1.0';
 const MESSAGING_CONFIG = {
   CHUNK_SIZE: 40,
   MESSAGE_PREFIX: 'BC2_',
-  PUBKEY_PREFIX: 'BC2_PUB_',
+  PUBKEY_PREFIX: 'BC2PUB:',
   COMPRESSION_LEVEL: 9,
   MESSAGE_FEE: 0.00000294,
   MAX_MESSAGE_LENGTH: 50000
@@ -222,7 +222,7 @@ class BC2Messaging {
 
     try {
       const publicKeyHex = Buffer.from(walletData.publicKey).toString('hex');
-      const opReturnData = `BC2PUB:${publicKeyHex}`;
+      const opReturnData = `${MESSAGING_CONFIG.PUBKEY_PREFIX}${publicKeyHex}`;
 
       console.log('Publication clé publique...');
 
@@ -280,8 +280,8 @@ class BC2Messaging {
             if (output.scriptPubKey && output.scriptPubKey.hex) {
               const opReturnData = this.extractOpReturnData(output.scriptPubKey.hex);
 
-              if (opReturnData && opReturnData.startsWith("BC2PUB:")) {
-                const publicKeyHex = opReturnData.substring(8);
+              if (opReturnData && opReturnData.startsWith(MESSAGING_CONFIG.PUBKEY_PREFIX)) {
+                const publicKeyHex = opReturnData.substring(MESSAGING_CONFIG.PUBKEY_PREFIX.length);
 
                 if (publicKeyHex.length === 66 || publicKeyHex.length === 64) {
                   const publicKeyBuffer = Buffer.from(publicKeyHex, "hex");
@@ -1568,8 +1568,8 @@ window.testPubkeySearch = async function(address) {
                 const decoded = Buffer.from(data, 'hex').toString('utf8');
                 console.log("📝 Données décodées:", decoded);
 
-                if (decoded.startsWith('BC2PUB:')) {
-                  const pubkey = decoded.substring(8);
+                if (decoded.startsWith(MESSAGING_CONFIG.PUBKEY_PREFIX)) {
+                  const pubkey = decoded.substring(MESSAGING_CONFIG.PUBKEY_PREFIX.length);
                   console.log("🔑 CLÉ PUBLIQUE TROUVÉE:", pubkey);
                   return pubkey;
                 }
