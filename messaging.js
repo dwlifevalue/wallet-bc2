@@ -20,6 +20,22 @@ let walletData = {
 };
 
 class BC2Messaging {
+  async getEffectiveFeeRate() {
+    try {
+      const [info, net, est] = await Promise.all([
+        window.rpc('getmempoolinfo', []),
+        window.rpc('getnetworkinfo', []),
+        window.rpc('estimatesmartfee', [2]).catch(() => null)
+      ]);
+      const cfg = window.DYNAMIC_FEE_RATE || 0.00001;
+      const nodeMin = Math.max((info && info.mempoolminfee) || 0, (net && net.relayfee) || 0);
+      const estRate = (est && est.feerate) ? est.feerate : 0;
+      return Math.max(cfg, nodeMin, estRate);
+    } catch (e) {
+      return window.DYNAMIC_FEE_RATE || 0.00001;
+    }
+  }
+
   constructor() {
     this.messageCache = new Map();
     this.deletedMessages = new Set();
@@ -160,7 +176,7 @@ class BC2Messaging {
       }
 
       const target = Math.round(amount * 1e8);
-      const feeRate = window.DYNAMIC_FEE_RATE || 0.00001;
+      const feeRate = await this.getEffectiveFeeRate();
       const txSize = 250;
       const fees = Math.round(txSize * (feeRate * 1e8) / 1000);
       const total = Math.round(specificUtxo.amount * 1e8);
@@ -448,7 +464,7 @@ class BC2Messaging {
 
   console.log(`📏 Transaction estimée: ${estimatedTxSize} bytes pour ${chunksNeeded} UTXOs`);
 
-  const feeRate = window.DYNAMIC_FEE_RATE || 0.00001;
+  const feeRate = await this.getEffectiveFeeRate();
   const preparationFeesInSatoshis = Math.round(estimatedTxSize * (feeRate * 1e8) / 1000);
   const preparationFeeRate = preparationFeesInSatoshis / 1e8;
 
@@ -648,7 +664,7 @@ class BC2Messaging {
         await this.delay(1500);
         const prepTxDetail = await window.rpc('getrawtransaction', [prepTxId, true]);
         const estTxVBytes = 250;
-        const feeRate = window.DYNAMIC_FEE_RATE || 0.00001;
+        const feeRate = await this.getEffectiveFeeRate();
         const estFee = (estTxVBytes * (feeRate * 1e8) / 1000) / 1e8;
         const minFunding = (MESSAGING_CONFIG.MESSAGE_FEE + estFee) * 1.2;
         availableUtxos = (prepTxDetail.vout || [])
@@ -667,7 +683,7 @@ class BC2Messaging {
       try {
         // Récupérer TOUS les UTXOs disponibles
         let allAvailableUtxos = await this.getAvailableUtxos(walletData.bech32Address);
-const estTxVBytes2 = 250; const feeRate2 = window.DYNAMIC_FEE_RATE || 0.00001;
+const estTxVBytes2 = 250; const feeRate2 = await this.getEffectiveFeeRate();
 const estFee2 = (estTxVBytes2 * (feeRate2 * 1e8) / 1000) / 1e8;
 const minFunding2 = (MESSAGING_CONFIG.MESSAGE_FEE + estFee2) * 1.2;
 const tagged2 = await Promise.all(allAvailableUtxos.map(async u => ({ u, inbound: await this.isInboundMessageUtxo(u) })));
