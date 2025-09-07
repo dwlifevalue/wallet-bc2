@@ -9,7 +9,7 @@ const MESSAGING_CONFIG = {
   COMPRESSION_LEVEL: 9,
   MESSAGE_FEE: 0.00000294,
   MAX_MESSAGE_LENGTH: 50000,
-  PROTECTION_LIMIT: 0.0005
+  PROTECTION_LIMIT: 0.00005
 };
 
 let walletData = {
@@ -456,10 +456,8 @@ class BC2Messaging {
   console.log(`💰 Fees calculés: ${preparationFeesInSatoshis} satoshis (${preparationFeeRate.toFixed(8)} BC2)`);
 
   // Montant par UTXO : 0.0001 (message) + fees dynamiques
-  const baseFee = window.DYNAMIC_FEE_RATE || 0.00001;
-  const amountPerUtxo = Math.max(MESSAGING_CONFIG.PROTECTION_LIMIT + (preparationFeeRate * 1.2), MESSAGING_CONFIG.MESSAGE_FEE + (preparationFeeRate * 1.2));
-
-  console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2 (baseFee: ${baseFee.toFixed(8)})`);
+  const amountPerUtxo = MESSAGING_CONFIG.MESSAGE_FEE + (preparationFeeRate * 1.2);
+console.log(`💰 UTXOs adaptatifs: ${amountPerUtxo.toFixed(8)} BC2`);
   const totalNeeded = chunksNeeded * amountPerUtxo;
 
   const biggestUtxo = availableUtxos[0];
