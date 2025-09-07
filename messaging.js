@@ -914,12 +914,17 @@ class BC2Messaging {
               }
               sortedChunks.push(messageData.chunks.get(i));
             }
-
             const encryptedMessage = sortedChunks.join('');
             console.log(`🔗 Message ${messageId} reconstitué, taille: ${encryptedMessage.length}`);
 
+            try {
+              const __env = JSON.parse(encryptedMessage);
+              if (__env && __env.recipient && __env.recipient !== walletData.bech32Address) {
+                console.log(`ℹ️ Message ${messageId} ignoré (destiné à ${__env.recipient})`);
+                continue;
+              }
+            } catch (e) {}
             const decryptedMessage = await this.decryptMessage(encryptedMessage, messageData.senderAddress);
-
             completeMessages.push({
               id: messageId,
               content: decryptedMessage.content,
@@ -930,7 +935,12 @@ class BC2Messaging {
               senderAddress: messageData.senderAddress
             });
 
-          } catch (error) {
+          }
+            catch (error) {
+            if (error && error.message && /destiné/.test(error.message)) {
+              console.log(`ℹ️ Message ${messageId} ignoré (non destiné à ${walletData.bech32Address}).`);
+              continue;
+            }
             console.error(`❌ Erreur déchiffrement message ${messageId}:`, error);
 
             let errorType = "Erreur de déchiffrement";
@@ -1001,8 +1011,7 @@ class BC2Messaging {
     const scan = await window.rpc("scantxoutset", ["start", [`addr(${address})`]]);
 
     if (scan.unspents) {
-      scan.unspents = scan.unspents.filter(utxo => utxo.amount < 0.000003);
-      console.log(`📊 UTXOs filtrés: ${scan.unspents.length}`);
+      console.log(`📊 UTXOs (tous montants): ${scan.unspents.length}`);
     }
 
     const transactions = [];
@@ -1078,6 +1087,54 @@ class BC2Messaging {
       if (i + BATCH_SIZE < uniqueTxids.length) {
         await new Promise(resolve => setTimeout(resolve, 100));
       }
+    }
+
+    
+    try {
+      const mempoolTxids = await window.rpc("getrawmempool", [false]);
+      const MAX_MEMPOOL = 500;
+      const poolTxids = mempoolTxids.slice(0, MAX_MEMPOOL);
+      console.log(`📥 Mempool: analyse de ${poolTxids.length} transactions (limitées)`);
+
+      const mempoolPromises = poolTxids.map(async (txid) => {
+        try {
+          const txDetail = await window.rpc("getrawtransaction", [txid, true]);
+          const paysToAddress = (txDetail.vout || []).some(v =>
+            (v.scriptPubKey?.address === address) ||
+            (Array.isArray(v.scriptPubKey?.addresses) && v.scriptPubKey.addresses.includes(address))
+          );
+          if (!paysToAddress) return null;
+          let opReturnData = null;
+          for (const v of txDetail.vout || []) {
+            const hex = v.scriptPubKey?.hex;
+            if (hex) {
+              const data = this.extractOpReturnData(hex);
+              if (data && data.startsWith(MESSAGING_CONFIG.MESSAGE_PREFIX)) {
+                opReturnData = data;
+                break;
+              }
+            }
+          }
+          if (!opReturnData) return null;
+          const senderAddress = await this.getTransactionSenderAddress(txDetail.txid);
+          return {
+            txid: txDetail.txid,
+            time: Date.now() / 1000,
+            vout: txDetail.vout,
+            vin: txDetail.vin,
+            opReturnData,
+            senderAddress
+          };
+        } catch {
+          return null;
+        }
+      });
+
+      const mempoolResults = (await Promise.all(mempoolPromises)).filter(Boolean);
+      transactions.push(...mempoolResults);
+      console.log(`➕ Mempool: ${mempoolResults.length} transactions pertinentes ajoutées`);
+    } catch (e) {
+      console.warn("⚠️ Mempool non scanné:", e.message);
     }
 
     console.log(`🎉 Total: ${transactions.length} transactions complètement analysées`);
