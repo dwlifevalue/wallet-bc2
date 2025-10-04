@@ -20,7 +20,7 @@ server {
     ssl_ciphers EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH;
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://bitcoinii.ddns.net/explorer https://bitcoinii.space/fr; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://bitcoinii.ddns.net/explorer; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;" always;
 
     root /var/www/wallet-bc2;
     index index.html;
@@ -38,10 +38,10 @@ server {
         proxy_read_timeout 2s;
         proxy_send_timeout 1s;
 
-        proxy_pass http://ip:rpc-port/;
+        proxy_pass http://ip:rpc port/;
         proxy_http_version 1.1;
 
-        proxy_set_header Authorization "ip:rpc-port must be encoded here in BASE64 (See /api-custom/ for example)";
+        proxy_set_header Authorization "Basic dXNlcjpwYXNz";  \\ Your basic64 ip:port encoding
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -67,10 +67,10 @@ server {
         proxy_read_timeout 2s;
         proxy_send_timeout 1s;
 
-        proxy_pass http://ip:rpc-port/;
+        proxy_pass http://ip:rpc port/;
         proxy_http_version 1.1;
 
-        proxy_set_header Authorization "Basic dXNlcjpwYXNz"; 
+        proxy_set_header Authorization "Basic dXNlcjpwYXNz";  \\ Your basic64 ip:port encoding
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -80,6 +80,33 @@ server {
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
         add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type' always;
         add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type' always;
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+    }
+
+    location /explorer/ {
+        proxy_connect_timeout 3s;
+        proxy_read_timeout 5s;
+        proxy_send_timeout 3s;
+
+        proxy_pass https://bitcoinii.ddns.net/explorer/;
+        proxy_http_version 1.1;
+
+        proxy_set_header Host bitcoinii.ddns.net;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Headers CORS
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type' always;
 
         if ($request_method = 'OPTIONS') {
             add_header 'Access-Control-Allow-Origin' '*' always;
