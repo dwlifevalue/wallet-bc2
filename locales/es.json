@@ -1,0 +1,229 @@
+{
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "es": "Español",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文"
+  },
+  
+  "title": "Cartera BC2",
+  "language_label": "Idioma:",
+  
+  "counter": {
+    "keys_generated": "🔑 Claves BC2 generadas:"
+  },
+  
+  "generate_section": {
+    "title": "🎯 Generación / Importación",
+    "generate": "🎯 Generación",
+    "generate_button": "🎲 Generar",
+    "copy": "📋 Copiar",
+    "reveal": "👁️ Revelar",
+    "warning": "⚠️ ¡Guarde la clave privada inmediatamente! Se borrará después de 10 minutos de inactividad o al recargar la página.",
+    "hd_mnemonic_title": "SEMILLA MNEMÓNICA HD (24 palabras):",
+    "xprv_title": "Clave Maestra XPRV HD:",
+    "reveal_mnemonic": "Revelar Mnemónico",
+    "reveal_xprv": "Revelar XPRV"
+  },
+  
+  "import_section": {
+    "title": "📥 Importar una Cartera",
+    "import_button": "📥 Importar",
+    "refresh_button": "🔄 Actualizar",
+    "balance": "Saldo:"
+  },
+  
+  "send_section": {
+    "title": "📤 Enviar BC2",
+    "destination_placeholder": "Dirección del destinatario",
+    "amount_placeholder": "Cantidad (BC2)",
+    "fee_placeholder": "Comisión (BC2)",
+    "debit_label": "Dirección a debitar:",
+    "bech32_option": "Bech32",
+    "prepare_button": "🔏 Preparar",
+    "broadcast_button": "✅ Transmitir transacción",
+    "cancel_button": "❌ Cancelar",
+    "signed_tx": "Transacción firmada (hex):",
+    "copy_tx": "📋 Copiar"
+  },
+  
+  "footer": {
+    "open_source": "Este proyecto es de código abierto",
+    "view_code": "Ver código en GitHub",
+    "official_site": "Sitio oficial BC2"
+  },
+  
+  "max_button": {
+    "text": "MAX",
+    "info": "Máximo enviable: {{amount}} BC2 (comisiones: {{fees}} BC2, {{utxos}} UTXOs)"
+  },
+  
+  "common": {
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "ok": "OK",
+    "confirm": "Confirmar"
+  },
+  
+  "errors": {
+    "initialization_failed": "Fallo en la inicialización. Por favor, recargue la página.",
+    "libraries_timeout": "Tiempo de espera agotado al cargar bibliotecas",
+    "libraries_failed": "Fallo en la inicialización de las bibliotecas Bitcoin",
+    "missing_apis": "APIs de navegador requeridas faltantes: {{apis}}",
+    "import_first": "Primero importe una cartera.",
+    "enter_key": "Por favor ingrese una clave privada, mnemónico o XPRV",
+    "import_failed": "Importación fallida",
+    "import_error": "Error de importación",
+    "enter_email_password": "Por favor ingrese correo electrónico y contraseña",
+    "connection_failed": "Conexión fallida",
+    "connection_error": "Error de conexión",
+    "generation_failed": "Error de generación",
+    "fill_destination_amount": "Por favor complete la dirección de destino y la cantidad",
+    "transaction_functions_unavailable": "Funciones de transacción no disponibles",
+    "transaction_prep_failed": "Fallo en la preparación de la transacción",
+    "no_transaction": "No hay transacción para transmitir",
+    "rpc_unavailable": "Función RPC no disponible",
+    "broadcast_failed": "Transmisión fallida",
+    "consolidation_unavailable": "Función de consolidación no disponible",
+    "error_details": "Error",
+    "missing_element": "Elemento faltante: {{id}}"
+  },
+  
+  "consolidate": {
+    "cta": "Consolidar UTXOs"
+  },
+  
+  "loading": {
+    "wallet_setup": "Configurando cartera...",
+    "refreshing": "⛏ Actualizando...",
+    "importing_wallet": "Importando cartera...",
+    "connecting_email": "Iniciando sesión por correo...",
+    "blockchain_scan": "Escaneando blockchain...",
+    "cache_clearing": "Limpiando cachés...",
+    "utxo_scan": "Analizando UTXOs...",
+    "balance_updated": "✅ ¡Saldo actualizado!",
+    "update_error": "❌ Error de actualización",
+    "calculating": "Calculando...",
+    "preparing_transaction": "Preparando transacción...",
+    "broadcasting": "Transmitiendo..."
+  },
+  
+  "popup": {
+    "success_message": "¡Transacción enviada con éxito!",
+    "confirmation_progress": "Confirmación:",
+    "transaction_id": "ID de Transacción:",
+    "close_button": "Cerrar",
+    "confirming": "Confirmando...",
+    "ok_button": "OK"
+  },
+  
+  "system": {
+    "initialization_error_title": "Error de inicialización",
+    "reload_page": "Recargar página",
+    "wallet_ready": "Cartera BC2 lista en {{time}}ms - Versión {{version}}"
+  },
+  
+  "transactions": {
+    "insufficient_funds_after_fees": "Fondos insuficientes después de comisiones",
+    "no_suitable_utxos": "No hay UTXOs maduros disponibles",
+    "need_at_least_utxos": "Se necesitan al menos {{count}} UTXOs maduros para consolidar",
+    "consolidation_completed": "¡Consolidación completada!\n{{original}} UTXOs → {{final}} UTXO(s)\nTransacciones: {{txCount}}\nTipo: {{type}}",
+    "no_utxos_for_consolidation": "No hay UTXOs disponibles para consolidación",
+    "consolidation_error": "Error de consolidación: {{error}}",
+    "consolidation_in_progress": "Consolidación ya en progreso. Por favor espere.",
+    "import_wallet_first": "Primero importe una cartera.",
+    "no_utxos_available": "No hay UTXOs disponibles",
+    "insufficient_funds_simple": "Fondos insuficientes",
+    "need_at_least_two_utxos": "Se necesitan al menos 2 UTXOs maduros para consolidar. Encontrados: {{found}}",
+    "rpc_function_unavailable": "Función RPC no disponible",
+    "source_address_not_found": "Dirección de origen no encontrada para tipo: {{type}}",
+    "failed_to_fetch_utxos": "Fallo al obtener UTXOs",
+    "invalid_destination": "Dirección de destino inválida",
+    "missing_keypair": "Par de claves faltante para UTXO {{index}}",
+    "transaction_preparation_failed": "Fallo en la preparación de la transacción",
+    "consolidation_batch_skipped": "Lote de consolidación {{batch}} omitido",
+    "consolidation_batch_failed": "Lote de consolidación {{batch}} fallido: {{error}}"
+  },
+  
+  "security": {
+    "rate_limit_exceeded": "Límite de tasa excedido. Por favor espere {{seconds}} segundos antes de reintentar.",
+    "failed_to_encrypt": "Fallo al cifrar datos sensibles",
+    "failed_to_decrypt": "Fallo al descifrar datos",
+    "element_not_found": "Elemento no encontrado",
+    "nothing_to_copy": "Nada que copiar",
+    "please_reveal_first": "Por favor revele el contenido primero",
+    "copy_failed": "Copia fallida",
+    "copied": "¡Copiado!",
+    "invalid_private_key": "Clave privada inválida",
+    "invalid_hex_format": "Formato hexadecimal inválido - debe contener 64 caracteres",
+    "private_key_32_bytes": "La clave privada debe tener 32 bytes",
+    "invalid_wif_format": "Formato WIF inválido",
+    "session_expired_title": "Sesión expirada",
+    "auto_reload_message": "Recargando automáticamente...",
+    "inactivity_detected": "Inactividad detectada",
+    "unknown_validation_type": "Tipo de validación desconocido: {{type}}",
+    "timer_arm_failed": "Fallo al armar temporizador",
+    "failed_to_derive_credentials": "Fallo al derivar credenciales: {{error}}",
+    "empty_input": "Entrada vacía proporcionada",
+    "invalid_email_format": "Formato de correo electrónico inválido",
+    "password_cannot_be_empty": "La contraseña no puede estar vacía",
+    "encryption_not_initialized": "Cifrado no inicializado",
+    "invalid_data_type": "Tipo de datos inválido para cifrado",
+    "encryption_failed": "Cifrado fallido: {{error}}",
+    "invalid_encrypted_data": "Datos cifrados inválidos",
+    "decryption_failed": "Descifrado fallido: {{error}}"
+  },
+  
+  "confirmations": {
+    "checking_confirmation": "Verificando confirmaciones...",
+    "confirmed": "Confirmado"
+  },
+  
+  "wallet": {
+    "email_wallet_connected": "Cartera de correo conectada con éxito",
+    "email_connection_started": "Inicio de sesión por correo iniciado, generando cartera...",
+    "email_wallet_generated": "Cartera de correo generada, calculando saldos...",
+    "invalid_pubkey_conversion": "Clave pública inválida para conversión X-only",
+    "bitcoin_library_unavailable": "Biblioteca Bitcoin no disponible",
+    "invalid_tweaked_key": "Clave privada ajustada inválida",
+    "tweaked_pubkey_error": "Fallo al calcular clave pública ajustada",
+    "failed_to_create_taproot": "Fallo al crear dirección Taproot",
+    "ecc_library_unavailable": "Biblioteca ECC no disponible para tweakSigner",
+    "invalid_seed_xprv": "Semilla o XPRV inválido",
+    "invalid_mnemonic": "Frase mnemónica inválida",
+    "hd_wallet_import_failed": "Fallo en importación de cartera HD: {{error}}",
+    "hd_wallet_not_initialized": "Cartera HD no inicializada",
+    "hd_wallet_not_found": "Cartera HD no encontrada",
+    "failed_to_derive_addresses": "Fallo al derivar direcciones: {{error}}",
+    "unknown_address_family": "Familia de dirección desconocida: {{family}}",
+    "unsupported_input_format": "Formato de entrada no soportado",
+    "failed_to_generate_mnemonic": "Fallo al generar frase mnemónica",
+    "keymanager_not_initialized": "KeyManager no inicializado",
+    "keypair_derivation_failed": "Fallo en la derivación del par de claves"
+  },
+  
+  "explorer": {
+    "primary_unavailable": "Explorador principal no disponible, usando explorador de respaldo",
+    "checking_explorer": "Error al verificar explorador:"
+  },
+  
+  "ui": {
+    "calculating": "Calculando...",
+    "max_function_unavailable": "Función calculateMaxSendableAmount no disponible",
+    "max_calculation_error": "Error de cálculo MAX: {{error}}",
+    "enter_destination_address": "Por favor ingrese una dirección de destino",
+    "invalid_amount": "Cantidad inválida",
+    "refresh_error": "Error de actualización: {{error}}"
+  },
+  
+  "progress_indicators": {
+    "initializing": "Inicializando...",
+    "preparing_utxos_percentage": "Preparando UTXOs: {{percentage}}%",
+    "preparing_missing_utxos": "Preparando {{count}} UTXOs...",
+    "utxos_ready": "UTXOs listos",
+    "broadcasting_chunks": "Transmitiendo {{current}}/{{total}}"
+  }
+}

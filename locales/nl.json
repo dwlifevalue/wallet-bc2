@@ -1,0 +1,229 @@
+{
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "es": "Español",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文"
+  },
+  
+  "title": "BC2 Portemonnee",
+  "language_label": "Taal:",
+  
+  "counter": {
+    "keys_generated": "🔑 BC2-sleutels gegenereerd:"
+  },
+  
+  "generate_section": {
+    "title": "🎯 Generatie / Importeren",
+    "generate": "🎯 Generatie",
+    "generate_button": "🎲 Genereren",
+    "copy": "📋 Kopiëren",
+    "reveal": "👁️ Tonen",
+    "warning": "⚠️ Bewaar de privésleutel onmiddellijk! Deze wordt gewist na 10 minuten inactiviteit of na het herladen van de pagina.",
+    "hd_mnemonic_title": "HD MNEMONIC SEED (24 woorden):",
+    "xprv_title": "XPRV HD Hoofdsleutel:",
+    "reveal_mnemonic": "Mnemonic tonen",
+    "reveal_xprv": "XPRV tonen"
+  },
+  
+  "import_section": {
+    "title": "📥 Portemonnee importeren",
+    "import_button": "📥 Importeren",
+    "refresh_button": "🔄 Vernieuwen",
+    "balance": "Saldo:"
+  },
+  
+  "send_section": {
+    "title": "📤 BC2 versturen",
+    "destination_placeholder": "Ontvanger adres",
+    "amount_placeholder": "Bedrag (BC2)",
+    "fee_placeholder": "Kosten (BC2)",
+    "debit_label": "Te belasten adres:",
+    "bech32_option": "Bech32",
+    "prepare_button": "🔏 Voorbereiden",
+    "broadcast_button": "✅ Transactie verzenden",
+    "cancel_button": "❌ Annuleren",
+    "signed_tx": "Ondertekende transactie (hex):",
+    "copy_tx": "📋 Kopiëren"
+  },
+  
+  "footer": {
+    "open_source": "Dit project is open source",
+    "view_code": "Code bekijken op GitHub",
+    "official_site": "Officiële BC2-website"
+  },
+  
+  "max_button": {
+    "text": "MAX",
+    "info": "Maximum verzendbaar: {{amount}} BC2 (kosten: {{fees}} BC2, {{utxos}} UTXOs)"
+  },
+  
+  "common": {
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "ok": "OK",
+    "confirm": "Bevestigen"
+  },
+  
+  "errors": {
+    "initialization_failed": "App-initialisatie mislukt. Vernieuw de pagina.",
+    "libraries_timeout": "Time-out bij laden van bibliotheken",
+    "libraries_failed": "Bitcoin-bibliotheken konden niet worden geïnitialiseerd",
+    "missing_apis": "Ontbrekende vereiste browser-API's: {{apis}}",
+    "import_first": "Importeer eerst een portemonnee.",
+    "enter_key": "Voer een privésleutel, mnemonic of XPRV in",
+    "import_failed": "Importeren mislukt",
+    "import_error": "Importfout",
+    "enter_email_password": "Voer e-mail en wachtwoord in",
+    "connection_failed": "Verbinding mislukt",
+    "connection_error": "Verbindingsfout",
+    "generation_failed": "Generatiefout",
+    "fill_destination_amount": "Vul bestemmingsadres en bedrag in",
+    "transaction_functions_unavailable": "Transactiefuncties niet beschikbaar",
+    "transaction_prep_failed": "Transactievoorbereiding mislukt",
+    "no_transaction": "Geen transactie om te verzenden",
+    "rpc_unavailable": "RPC-functie niet beschikbaar",
+    "broadcast_failed": "Uitzending mislukt",
+    "consolidation_unavailable": "Consolidatiefunctie niet beschikbaar",
+    "error_details": "Fout",
+    "missing_element": "Ontbrekend element: {{id}}"
+  },
+  
+  "consolidate": {
+    "cta": "UTXOs consolideren"
+  },
+  
+  "loading": {
+    "wallet_setup": "Portemonnee instellen...",
+    "refreshing": "⛏ Vernieuwen...",
+    "importing_wallet": "Portemonnee importeren...",
+    "connecting_email": "Inloggen via e-mail...",
+    "blockchain_scan": "Blockchain scannen...",
+    "cache_clearing": "Caches wissen...",
+    "utxo_scan": "UTXOs analyseren...",
+    "balance_updated": "✅ Saldo bijgewerkt!",
+    "update_error": "❌ Update fout",
+    "calculating": "Berekenen...",
+    "preparing_transaction": "Transactie voorbereiden...",
+    "broadcasting": "Uitzenden..."
+  },
+  
+  "popup": {
+    "success_message": "Transactie succesvol verzonden!",
+    "confirmation_progress": "Bevestiging:",
+    "transaction_id": "Transactie-ID:",
+    "close_button": "Sluiten",
+    "confirming": "Bevestigen...",
+    "ok_button": "OK"
+  },
+  
+  "system": {
+    "initialization_error_title": "Initialisatiefout",
+    "reload_page": "Pagina herladen",
+    "wallet_ready": "BC2 Portemonnee klaar in {{time}}ms - Versie {{version}}"
+  },
+  
+  "transactions": {
+    "insufficient_funds_after_fees": "Onvoldoende saldo na kosten",
+    "no_suitable_utxos": "Geen geschikte rijpe UTXOs beschikbaar",
+    "need_at_least_utxos": "Minimaal {{count}} rijpe UTXOs nodig om te consolideren",
+    "consolidation_completed": "Consolidatie voltooid!\n{{original}} UTXOs → {{final}} UTXO(s)\nTransacties: {{txCount}}\nType: {{type}}",
+    "no_utxos_for_consolidation": "Geen UTXOs beschikbaar voor consolidatie",
+    "consolidation_error": "Consolidatiefout: {{error}}",
+    "consolidation_in_progress": "Consolidatie al bezig. Even geduld.",
+    "import_wallet_first": "Importeer eerst een portemonnee.",
+    "no_utxos_available": "Geen UTXOs beschikbaar",
+    "insufficient_funds_simple": "Onvoldoende saldo",
+    "need_at_least_two_utxos": "Minimaal 2 rijpe UTXOs nodig om te consolideren. Gevonden: {{found}}",
+    "rpc_function_unavailable": "RPC-functie niet beschikbaar",
+    "source_address_not_found": "Bronadres niet gevonden voor type: {{type}}",
+    "failed_to_fetch_utxos": "Ophalen van UTXOs mislukt",
+    "invalid_destination": "Ongeldig bestemmingsadres",
+    "missing_keypair": "Ontbrekend sleutelpaar voor UTXO {{index}}",
+    "transaction_preparation_failed": "Transactievoorbereiding mislukt",
+    "consolidation_batch_skipped": "Consolidatiebatch {{batch}} overgeslagen",
+    "consolidation_batch_failed": "Consolidatiebatch {{batch}} mislukt: {{error}}"
+  },
+  
+  "security": {
+    "rate_limit_exceeded": "Snelheidslimiet overschreden. Wacht {{seconds}} seconden voor opnieuw proberen.",
+    "failed_to_encrypt": "Versleutelen van gevoelige data mislukt",
+    "failed_to_decrypt": "Ontsleutelen van data mislukt",
+    "element_not_found": "Element niet gevonden",
+    "nothing_to_copy": "Niets om te kopiëren",
+    "please_reveal_first": "Toon eerst de inhoud",
+    "copy_failed": "Kopiëren mislukt",
+    "copied": "Gekopieerd!",
+    "invalid_private_key": "Ongeldige privésleutel",
+    "invalid_hex_format": "Ongeldig hex-formaat - moet 64 tekens bevatten",
+    "private_key_32_bytes": "Privésleutel moet 32 bytes zijn",
+    "invalid_wif_format": "Ongeldig WIF-formaat",
+    "session_expired_title": "Sessie verlopen",
+    "auto_reload_message": "Automatisch herladen...",
+    "inactivity_detected": "Inactiviteit gedetecteerd",
+    "unknown_validation_type": "Onbekend validatietype: {{type}}",
+    "timer_arm_failed": "Timer activeren mislukt",
+    "failed_to_derive_credentials": "Afleiden van inloggegevens mislukt: {{error}}",
+    "empty_input": "Lege invoer gegeven",
+    "invalid_email_format": "Ongeldig e-mailformaat",
+    "password_cannot_be_empty": "Wachtwoord mag niet leeg zijn",
+    "encryption_not_initialized": "Versleuteling niet geïnitialiseerd",
+    "invalid_data_type": "Ongeldig datatype voor versleuteling",
+    "encryption_failed": "Versleuteling mislukt: {{error}}",
+    "invalid_encrypted_data": "Ongeldige versleutelde data",
+    "decryption_failed": "Ontsleuteling mislukt: {{error}}"
+  },
+  
+  "confirmations": {
+    "checking_confirmation": "Bevestigingen controleren...",
+    "confirmed": "Bevestigd"
+  },
+  
+  "wallet": {
+    "email_wallet_connected": "E-mail portemonnee succesvol verbonden",
+    "email_connection_started": "E-mail login gestart, portemonnee genereren...",
+    "email_wallet_generated": "E-mail portemonnee gegenereerd, saldo's berekenen...",
+    "invalid_pubkey_conversion": "Ongeldige publieke sleutel voor X-only conversie",
+    "bitcoin_library_unavailable": "Bitcoin-bibliotheek niet beschikbaar",
+    "invalid_tweaked_key": "Ongeldige getweakte privésleutel",
+    "tweaked_pubkey_error": "Berekenen van getweakte publieke sleutel mislukt",
+    "failed_to_create_taproot": "Aanmaken van Taproot-adres mislukt",
+    "ecc_library_unavailable": "ECC-bibliotheek niet beschikbaar voor tweakSigner",
+    "invalid_seed_xprv": "Ongeldige seed of XPRV",
+    "invalid_mnemonic": "Ongeldige mnemonic zin",
+    "hd_wallet_import_failed": "HD-portemonnee import mislukt: {{error}}",
+    "hd_wallet_not_initialized": "HD-portemonnee niet geïnitialiseerd",
+    "hd_wallet_not_found": "HD-portemonnee niet gevonden",
+    "failed_to_derive_addresses": "Afleiden van adressen mislukt: {{error}}",
+    "unknown_address_family": "Onbekende adresfamilie: {{family}}",
+    "unsupported_input_format": "Niet-ondersteund invoerformaat",
+    "failed_to_generate_mnemonic": "Genereren van mnemonic zin mislukt",
+    "keymanager_not_initialized": "KeyManager niet geïnitialiseerd",
+    "keypair_derivation_failed": "Afleiden van sleutelpaar mislukt"
+  },
+  
+  "explorer": {
+    "primary_unavailable": "Primaire explorer niet beschikbaar, gebruik fallback explorer",
+    "checking_explorer": "Fout bij controleren explorer:"
+  },
+  
+  "ui": {
+    "calculating": "Berekenen...",
+    "max_function_unavailable": "Functie calculateMaxSendableAmount niet beschikbaar",
+    "max_calculation_error": "MAX-berekeningsfout: {{error}}",
+    "enter_destination_address": "Voer een bestemmingsadres in",
+    "invalid_amount": "Ongeldig bedrag",
+    "refresh_error": "Vernieuwingsfout: {{error}}"
+  },
+  
+  "progress_indicators": {
+    "initializing": "Initialiseren...",
+    "preparing_utxos_percentage": "UTXOs voorbereiden: {{percentage}}%",
+    "preparing_missing_utxos": "{{count}} UTXOs voorbereiden...",
+    "utxos_ready": "UTXOs klaar",
+    "broadcasting_chunks": "Uitzenden {{current}}/{{total}}"
+  }
+}

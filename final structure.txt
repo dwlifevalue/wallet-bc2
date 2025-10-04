@@ -1,0 +1,42 @@
+var/www/wallet-bc2/
+├── index.html
+├── nito.png
+├── packkage-lock.json
+├── locales/
+│   ├── fr.json
+│   ├── en.json
+│   ├── de.json
+│   ├── es.json
+│   ├── nl.json
+│   ├── ru.json
+│   └── zh.json
+├── src/
+│   ├── app.js
+│   ├── blockchain-config.js
+│   ├── rpc-manager.js
+│   ├── vendor.js
+│   ├── encryption.js
+│   ├── secure-operations.js
+│   ├── events.js
+│   ├── config.js
+│   ├── security.js
+│   ├── blockchain.js
+│   ├── wallet.js
+│   ├── transactions.js
+│   ├── ui-popups.js
+│   └── ui-handlers.js
+├── dist/
+│   └── vendor-bundle.min.js
+├── api/
+│   └── get-counter.php
+└── data/
+    └── counter.txt
+
+
+
+
+
+Allow the key counter php script to write:
+ 
+sudo chown -R www-data:www-data /var/www/wallet-bc2t/data
+sudo chmod 600 /var/www/wallet-bc2/data/counter.txt

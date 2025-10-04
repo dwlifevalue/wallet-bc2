@@ -1,0 +1,229 @@
+{
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "es": "Español",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文"
+  },
+  
+  "title": "BC2 Wallet",
+  "language_label": "Sprache:",
+  
+  "counter": {
+    "keys_generated": "🔑 BC2-Schlüssel generiert:"
+  },
+  
+  "generate_section": {
+    "title": "🎯 Generierung / Import",
+    "generate": "🎯 Generierung",
+    "generate_button": "🎲 Generieren",
+    "copy": "📋 Kopieren",
+    "reveal": "👁️ Anzeigen",
+    "warning": "⚠️ Speichern Sie den privaten Schlüssel sofort! Er wird nach 10 Minuten Inaktivität oder nach dem Neuladen der Seite gelöscht.",
+    "hd_mnemonic_title": "HD MNEMONISCHER SEED (24 Wörter):",
+    "xprv_title": "XPRV HD Master-Schlüssel:",
+    "reveal_mnemonic": "Mnemonic anzeigen",
+    "reveal_xprv": "XPRV anzeigen"
+  },
+  
+  "import_section": {
+    "title": "📥 Wallet importieren",
+    "import_button": "📥 Importieren",
+    "refresh_button": "🔄 Aktualisieren",
+    "balance": "Guthaben:"
+  },
+  
+  "send_section": {
+    "title": "📤 BC2 senden",
+    "destination_placeholder": "Empfängeradresse",
+    "amount_placeholder": "Betrag (BC2)",
+    "fee_placeholder": "Gebühr (BC2)",
+    "debit_label": "Zu belastende Adresse:",
+    "bech32_option": "Bech32",
+    "prepare_button": "🔏 Vorbereiten",
+    "broadcast_button": "✅ Transaktion senden",
+    "cancel_button": "❌ Abbrechen",
+    "signed_tx": "Signierte Transaktion (hex):",
+    "copy_tx": "📋 Kopieren"
+  },
+  
+  "footer": {
+    "open_source": "Dieses Projekt ist Open Source",
+    "view_code": "Code auf GitHub ansehen",
+    "official_site": "Offizielle BC2-Website"
+  },
+  
+  "max_button": {
+    "text": "MAX",
+    "info": "Maximum sendbar: {{amount}} BC2 (Gebühren: {{fees}} BC2, {{utxos}} UTXOs)"
+  },
+  
+  "common": {
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "ok": "OK",
+    "confirm": "Bestätigen"
+  },
+  
+  "errors": {
+    "initialization_failed": "App-Initialisierung fehlgeschlagen. Bitte Seite neu laden.",
+    "libraries_timeout": "Zeitüberschreitung beim Laden der Bibliotheken",
+    "libraries_failed": "Bitcoin-Bibliotheken konnten nicht initialisiert werden",
+    "missing_apis": "Fehlende erforderliche Browser-APIs: {{apis}}",
+    "import_first": "Importieren Sie zuerst ein Wallet.",
+    "enter_key": "Bitte geben Sie einen privaten Schlüssel, Mnemonic oder XPRV ein",
+    "import_failed": "Import fehlgeschlagen",
+    "import_error": "Import-Fehler",
+    "enter_email_password": "Bitte geben Sie E-Mail und Passwort ein",
+    "connection_failed": "Verbindung fehlgeschlagen",
+    "connection_error": "Verbindungsfehler",
+    "generation_failed": "Generierungsfehler",
+    "fill_destination_amount": "Bitte füllen Sie Zieladresse und Betrag aus",
+    "transaction_functions_unavailable": "Transaktionsfunktionen nicht verfügbar",
+    "transaction_prep_failed": "Transaktionsvorbereitung fehlgeschlagen",
+    "no_transaction": "Keine Transaktion zum Senden",
+    "rpc_unavailable": "RPC-Funktion nicht verfügbar",
+    "broadcast_failed": "Übertragung fehlgeschlagen",
+    "consolidation_unavailable": "Konsolidierungsfunktion nicht verfügbar",
+    "error_details": "Fehler",
+    "missing_element": "Fehlendes Element: {{id}}"
+  },
+  
+  "consolidate": {
+    "cta": "UTXOs konsolidieren"
+  },
+  
+  "loading": {
+    "wallet_setup": "Wallet wird eingerichtet...",
+    "refreshing": "⛏ Aktualisierung...",
+    "importing_wallet": "Wallet wird importiert...",
+    "connecting_email": "Anmeldung per E-Mail...",
+    "blockchain_scan": "Blockchain wird gescannt...",
+    "cache_clearing": "Caches werden gelöscht...",
+    "utxo_scan": "UTXOs werden analysiert...",
+    "balance_updated": "✅ Guthaben aktualisiert!",
+    "update_error": "❌ Aktualisierungsfehler",
+    "calculating": "Berechnung läuft...",
+    "preparing_transaction": "Transaktion wird vorbereitet...",
+    "broadcasting": "Übertragung..."
+  },
+  
+  "popup": {
+    "success_message": "Transaktion erfolgreich gesendet!",
+    "confirmation_progress": "Bestätigung:",
+    "transaction_id": "Transaktions-ID:",
+    "close_button": "Schließen",
+    "confirming": "Bestätigung...",
+    "ok_button": "OK"
+  },
+  
+  "system": {
+    "initialization_error_title": "Initialisierungsfehler",
+    "reload_page": "Seite neu laden",
+    "wallet_ready": "BC2 Wallet bereit in {{time}}ms - Version {{version}}"
+  },
+  
+  "transactions": {
+    "insufficient_funds_after_fees": "Unzureichende Mittel nach Gebühren",
+    "no_suitable_utxos": "Keine geeigneten reifen UTXOs verfügbar",
+    "need_at_least_utxos": "Mindestens {{count}} reife UTXOs erforderlich zum Konsolidieren",
+    "consolidation_completed": "Konsolidierung abgeschlossen!\n{{original}} UTXOs → {{final}} UTXO(s)\nTransaktionen: {{txCount}}\nTyp: {{type}}",
+    "no_utxos_for_consolidation": "Keine UTXOs für Konsolidierung verfügbar",
+    "consolidation_error": "Konsolidierungsfehler: {{error}}",
+    "consolidation_in_progress": "Konsolidierung läuft bereits. Bitte warten.",
+    "import_wallet_first": "Importieren Sie zuerst ein Wallet.",
+    "no_utxos_available": "Keine UTXOs verfügbar",
+    "insufficient_funds_simple": "Unzureichende Mittel",
+    "need_at_least_two_utxos": "Mindestens 2 reife UTXOs erforderlich zum Konsolidieren. Gefunden: {{found}}",
+    "rpc_function_unavailable": "RPC-Funktion nicht verfügbar",
+    "source_address_not_found": "Quelladresse nicht gefunden für Typ: {{type}}",
+    "failed_to_fetch_utxos": "Fehler beim Abrufen der UTXOs",
+    "invalid_destination": "Ungültige Zieladresse",
+    "missing_keypair": "Fehlende Schlüsselpaar für UTXO {{index}}",
+    "transaction_preparation_failed": "Transaktionsvorbereitung fehlgeschlagen",
+    "consolidation_batch_skipped": "Konsolidierungsstapel {{batch}} übersprungen",
+    "consolidation_batch_failed": "Konsolidierungsstapel {{batch}} fehlgeschlagen: {{error}}"
+  },
+  
+  "security": {
+    "rate_limit_exceeded": "Ratenlimit überschritten. Bitte warten Sie {{seconds}} Sekunden vor erneutem Versuch.",
+    "failed_to_encrypt": "Verschlüsselung sensibler Daten fehlgeschlagen",
+    "failed_to_decrypt": "Entschlüsselung der Daten fehlgeschlagen",
+    "element_not_found": "Element nicht gefunden",
+    "nothing_to_copy": "Nichts zu kopieren",
+    "please_reveal_first": "Bitte zuerst Inhalt anzeigen",
+    "copy_failed": "Kopieren fehlgeschlagen",
+    "copied": "Kopiert!",
+    "invalid_private_key": "Ungültiger privater Schlüssel",
+    "invalid_hex_format": "Ungültiges Hex-Format - muss 64 Zeichen enthalten",
+    "private_key_32_bytes": "Privater Schlüssel muss 32 Bytes haben",
+    "invalid_wif_format": "Ungültiges WIF-Format",
+    "session_expired_title": "Sitzung abgelaufen",
+    "auto_reload_message": "Automatisches Neuladen...",
+    "inactivity_detected": "Inaktivität erkannt",
+    "unknown_validation_type": "Unbekannter Validierungstyp: {{type}}",
+    "timer_arm_failed": "Timer-Aktivierung fehlgeschlagen",
+    "failed_to_derive_credentials": "Ableitung der Anmeldedaten fehlgeschlagen: {{error}}",
+    "empty_input": "Leere Eingabe bereitgestellt",
+    "invalid_email_format": "Ungültiges E-Mail-Format",
+    "password_cannot_be_empty": "Passwort kann nicht leer sein",
+    "encryption_not_initialized": "Verschlüsselung nicht initialisiert",
+    "invalid_data_type": "Ungültiger Datentyp für Verschlüsselung",
+    "encryption_failed": "Verschlüsselung fehlgeschlagen: {{error}}",
+    "invalid_encrypted_data": "Ungültige verschlüsselte Daten",
+    "decryption_failed": "Entschlüsselung fehlgeschlagen: {{error}}"
+  },
+  
+  "confirmations": {
+    "checking_confirmation": "Bestätigungen werden überprüft...",
+    "confirmed": "Bestätigt"
+  },
+  
+  "wallet": {
+    "email_wallet_connected": "E-Mail-Wallet erfolgreich verbunden",
+    "email_connection_started": "E-Mail-Anmeldung gestartet, Wallet wird generiert...",
+    "email_wallet_generated": "E-Mail-Wallet generiert, Guthaben werden berechnet...",
+    "invalid_pubkey_conversion": "Ungültiger öffentlicher Schlüssel für X-only-Konvertierung",
+    "bitcoin_library_unavailable": "Bitcoin-Bibliothek nicht verfügbar",
+    "invalid_tweaked_key": "Ungültiger getweakter privater Schlüssel",
+    "tweaked_pubkey_error": "Fehler beim Berechnen des getweakten öffentlichen Schlüssels",
+    "failed_to_create_taproot": "Fehler beim Erstellen der Taproot-Adresse",
+    "ecc_library_unavailable": "ECC-Bibliothek nicht verfügbar für tweakSigner",
+    "invalid_seed_xprv": "Ungültiger Seed oder XPRV",
+    "invalid_mnemonic": "Ungültige mnemonische Phrase",
+    "hd_wallet_import_failed": "HD-Wallet-Import fehlgeschlagen: {{error}}",
+    "hd_wallet_not_initialized": "HD-Wallet nicht initialisiert",
+    "hd_wallet_not_found": "HD-Wallet nicht gefunden",
+    "failed_to_derive_addresses": "Fehler beim Ableiten der Adressen: {{error}}",
+    "unknown_address_family": "Unbekannte Adressfamilie: {{family}}",
+    "unsupported_input_format": "Nicht unterstütztes Eingabeformat",
+    "failed_to_generate_mnemonic": "Fehler beim Generieren der mnemonischen Phrase",
+    "keymanager_not_initialized": "KeyManager nicht initialisiert",
+    "keypair_derivation_failed": "Ableitung des Schlüsselpaars fehlgeschlagen"
+  },
+  
+  "explorer": {
+    "primary_unavailable": "Primärer Explorer nicht verfügbar, verwende Fallback-Explorer",
+    "checking_explorer": "Fehler beim Überprüfen des Explorers:"
+  },
+  
+  "ui": {
+    "calculating": "Berechnung läuft...",
+    "max_function_unavailable": "Funktion calculateMaxSendableAmount nicht verfügbar",
+    "max_calculation_error": "MAX-Berechnungsfehler: {{error}}",
+    "enter_destination_address": "Bitte geben Sie eine Zieladresse ein",
+    "invalid_amount": "Ungültiger Betrag",
+    "refresh_error": "Aktualisierungsfehler: {{error}}"
+  },
+  
+  "progress_indicators": {
+    "initializing": "Initialisierung...",
+    "preparing_utxos_percentage": "UTXOs werden vorbereitet: {{percentage}}%",
+    "preparing_missing_utxos": "{{count}} UTXOs werden vorbereitet...",
+    "utxos_ready": "UTXOs bereit",
+    "broadcasting_chunks": "Übertragung {{current}}/{{total}}"
+  }
+}
